@@ -1,0 +1,12 @@
+   
+      
+<div class="bootstrap-demo">
+
+<% @restaurants.each do |restaurant| %>
+
+<%= link_to restaurant.name, {:controller => "dishes", :action => "show", :restaurant => restaurant } %>
+<br>
+
+<% end %>
+  <%= will_paginate @restaurants %> 
+
