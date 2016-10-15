@@ -1,57 +1,11 @@
 
+<% @dishes.each do |dish| %>
 
+<%= label_tag(dish.name) %>
 
+<%= number_field_tag(dish.id, in: 1..9, step: 1) %>
 
-
-<% @dishes.each_with_index do |dish, index|dish %>
-
-
-<script>
-function changeplus(id){
-  var val = document.getElementById(id).value
-  if (val<9){
-document.getElementById(id).value = parseInt(val) + 1 ;
-}
-
-}
-
-function changeminus(id){
-  var val = document.getElementById(id).value
-  if(val>0){
-document.getElementById(id).value= val - 1;
-}
-}
-
-</script>
-
-
-<%if index.even? %>	
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card card-block">
-      <h3 class="card-title"><%= dish.name %></h3>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-     <button type="button" class="btn btn-default btn-circle" onclick='changeplus("<%= dish.id %>")' >+</button>
-    <input type="number"  id="<%= dish.id %>" min="0" size="1" name="<%= dish.id %>" value="0" maxlength="1"/>
-    
-     <button type="button" class="btn btn-default btn-circle" onclick='changeminus("<%= dish.id %>")'>-</button>
-     <% else %> 
-
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card card-block">
-      <h3 class="card-title"><%= dish.name %></h3>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <button type="button" class="btn btn-default btn-circle" onclick='changeplus("<%= dish.id %>")'>+</button>
-        <input type="number"  id="<%= dish.id %>" min="0" size="1" name="<%= dish.id %>" value="0" maxlength="1"/>
-      <button type="button" class="btn btn-default btn-circle" onclick='changeminus("<%= dish.id %>")'>-</button>
-    </div>
-  </div>
-</div>
-<%end%>
+<%= button_to 'Add to Cart', line_items_path(:dish_id => dish) %>
 <% end %>
 
 

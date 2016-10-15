@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :line_items
+  resources :carts
+  
   devise_for :users, controllers: { registrations: "registrations"}
    
   get '/home', :to => 'static_pages#home'
@@ -12,7 +15,9 @@ Rails.application.routes.draw do
 
   root 'restaurants#show'
 
-get 'dishes/show'
+  get 'restaurants/show'
+
+  get 'dishes/show'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
