@@ -1,0 +1,3 @@
+$('#cart').html("<%= escape_javascript render(@cart) %>");
+$('#<%= @line_item.dish_id %>').html("<%= @line_item.quantity %>"); 	
+

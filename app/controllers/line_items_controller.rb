@@ -2,7 +2,7 @@ class LineItemsController < ApplicationController
 
   include CurrentCart
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create,:downgrade]
 
   def create
     dish = Dish.find(params[:dish_id])
@@ -11,7 +11,23 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html {redirect_to url_for(:controller => :restaurants, :action => :show) }
-        format.js{@current_item = @line_item}
+        format.js{ }
+        format.json {render action: 'show', status: :created, location: @line_item }
+      else
+        format.html {render action: 'new'}
+        format.json { render json: @line_item.errors, status: :unprocessable_entity}
+      end
+    end
+  end
+
+  def downgrade
+    dish = Dish.find(params[:dish_id])
+    @line_item = @cart.remove_product(dish.id)
+
+  respond_to do |format|
+      if @line_item.save
+        format.html {redirect_to url_for(:controller => :restaurants, :action => :show) }
+        format.js{ }
         format.json {render action: 'show', status: :created, location: @line_item }
       else
         format.html {render action: 'new'}

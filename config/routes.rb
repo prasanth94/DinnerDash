@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :orders
   resources :line_items
   resources :carts
   
   devise_for :users, controllers: { registrations: "registrations"}
    
   get '/home', :to => 'static_pages#home'
+
+  post 'line_items/downgrade'
 
   get 'static_pages/home'
 

@@ -1,11 +1,23 @@
 
 <% @dishes.each do |dish| %>
-
+<% quantity = 0 %>
 <%= label_tag(dish.name) %>
 
-<%= number_field_tag(dish.id, in: 1..9, step: 1) %>
 
-<%= button_to 'Add to Cart', line_items_path(:dish_id => dish) %>
+
+<%= button_to '+', line_items_path(:dish_id => dish), remote: true %>
+<div id = '<%= dish.id %>'>
+
+<% if LineItem.find_by(dish_id: dish.id,cart_id: @cart.id) %>
+<% quantity = LineItem.find_by(dish_id: dish.id,cart_id: @cart.id).quantity %>
+
+<% end %>
+
+
+
+ <%= label_tag(quantity)%>
+</div>
+<%= button_to '-', line_items_downgrade_path(:dish_id => dish), remote: true %>
 <% end %>
 
 

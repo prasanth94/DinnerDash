@@ -1,17 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<%= render @cart %>
 
-  <strong>Dish:</strong>
 
- <% @cart.line_items.each do |item| %>
- <li>
- <%= item.quantity %>
- <%= item.dish.name %>
- </li>
- <% end %>
- 
-
- <% button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'} %>
-
-</p>
