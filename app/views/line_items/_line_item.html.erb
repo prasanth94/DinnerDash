@@ -1,4 +1,5 @@
  <li>
  <%= line_item.quantity %>
- <%= line_item.dish.name %>
+ <%= line_item.dish.name %> :
+ <%= number_to_currency(line_item.total_price) %> 
  </li>

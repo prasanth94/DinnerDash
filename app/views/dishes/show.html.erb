@@ -1,5 +1,21 @@
+ <script>
+     $('#vegeterian').change(function(){
+     	if($(this). prop("checked") == true){
+		$(".vegeterian").hide();
+		}
+		else{$(".vegeterian").show();}
+      })
+</script>
+
+ <%= check_box_tag 'vegeterian'%>
+
+ <%= label_tag :Vegeterian %><br>
 
 <% @dishes.each do |dish| %>
+
+<div class= '<%= "vegeterian" if dish.vegeterian? %>' >
+
+
 <% quantity = 0 %>
 <%= label_tag(dish.name) %>
 
@@ -18,6 +34,9 @@
  <%= label_tag(quantity)%>
 </div>
 <%= button_to '-', line_items_downgrade_path(:dish_id => dish), remote: true %>
+
+
+</div>
 <% end %>
 
 

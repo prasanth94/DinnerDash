@@ -10,6 +10,10 @@ class DishesController < ApplicationController
 	
 	end
 
+	def veggie
+		format.js{ }
+	end
+
 	
 
 
