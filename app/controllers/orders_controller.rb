@@ -32,6 +32,10 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        lines = @cart.line_items.all
+        lines.each  do |line| 
+            OrderHistory.create(Dish_id: line.dish_id, user_id: current_user.id, quantity: line.quantity)
+        end
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         #OrderNotifier.received(@order).deliver
