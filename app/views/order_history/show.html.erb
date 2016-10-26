@@ -1,0 +1,6 @@
+<% @order_history.each do |order| %>
+<%= order.created_at %>
+<br>
+<%= Dish.find(order.Dish_id).name %>
+<br><br>
+<% end %>

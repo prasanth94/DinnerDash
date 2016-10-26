@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'order_history/show'
+
   resources :orders
   resources :line_items
   resources :carts
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   get 'restaurants/show'
 
   get 'dishes/show'
+
+  get 'order_history/show'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
